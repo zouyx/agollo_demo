@@ -55,13 +55,13 @@ Run
 Validate
 ------------
 
-## 验证所有字段
+- 验证所有字段
 
 ```
 http://localhost:9000/check
 ```
 
-## 验证某个字段
+- 验证某个字段
 
 ```
 http://localhost:9000/check?key=apolloKey
