@@ -1,4 +1,4 @@
-Agollo_Demo - Demo For [Apollo](https://github.com/zouyx/agollo)
+Agollo_Demo - Demo For Apollo
 ================
 
 [Apollo](https://github.com/zouyx/agollo)的使用Demo
