@@ -1,9 +1,9 @@
-Agollo_Demo - Demo For Apollo
+Agollo_Demo - Demo For [Apollo](https://github.com/zouyx/agollo)
 ================
 
-Agollo的使用Demo
+[Apollo](https://github.com/zouyx/agollo)的使用Demo
 
-主要用于验证agollo客户端自动刷新功能
+主要用于验证Agollo客户端自动刷新功能
 
 Dependence
 ------------
