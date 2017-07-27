@@ -1,3 +1,19 @@
-echo "构建agollo-demo....."
+projectName="agollo-demo"
+echo "构建$projectName....."
 echo "=============================="
-read -p "请输入需要设置的GOPATH,不输入即不设置:" gopath
+echo "设置GOPATH.."
+srcBaseDir="$(pwd)"
+cd ..
+baseDir="$(pwd)"
+export GOPATH=$baseDir
+
+echo "编译中.."
+cd $srcBaseDir
+rm -rf build
+go build -o "$projectName" main/check.go
+
+echo "构建运行环境.."
+mkdir build
+cp -rf $projectName build/
+cp -rf seelog.xml build/
+cp -rf app.properties build/
