@@ -19,15 +19,27 @@ func GetAllConfig(rw http.ResponseWriter,req *http.Request)  {
 	config:=agollo.GetCurrentApolloConfig()
 
 	var buffer bytes.Buffer
-	buffer.WriteString(fmt.Sprintf("AppId : %s  \n",config.AppId))
-	buffer.WriteString(fmt.Sprintf("Cluster : %s \n",config.Cluster))
-	buffer.WriteString(fmt.Sprintf("NamespaceName : %s \n",config.NamespaceName))
-	buffer.WriteString(fmt.Sprintf("ReleaseKey : %s \n",config.ReleaseKey))
+	buffer.WriteString("<html>")
+	buffer.WriteString("<meta http-equiv=\"refresh\" content=\"3\">")
 
-	buffer.WriteString("Configurations: \n")
-	for key,value :=range config.Configurations {
-		buffer.WriteString(fmt.Sprintf("key : %s , value : %s \n",key,value))
+	key:=req.URL.Query().Get("key")
+	if key=="" {
+		buffer.WriteString(fmt.Sprintf("AppId : %s  <br/>", config.AppId))
+		buffer.WriteString(fmt.Sprintf("Cluster : %s <br/>", config.Cluster))
+		buffer.WriteString(fmt.Sprintf("NamespaceName : %s <br/>", config.NamespaceName))
+		buffer.WriteString(fmt.Sprintf("ReleaseKey : %s <br/>", config.ReleaseKey))
+
+		buffer.WriteString("Configurations: <br/>")
+		for key, value := range config.Configurations {
+			buffer.WriteString(fmt.Sprintf("key : %s , value : %s <br/>", key, value))
+		}
+	}else{
+		if config!=nil&&config.Configurations!=nil{
+			buffer.WriteString(fmt.Sprintf("key : %s , value : %s <br/>", key, config.Configurations[key]))
+		}
 	}
+
+	buffer.WriteString("</html>")
 
 	rw.Write(buffer.Bytes())
 }
