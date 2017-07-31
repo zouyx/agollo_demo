@@ -17,6 +17,7 @@ func main() {
 
 func GetAllConfig(rw http.ResponseWriter,req *http.Request)  {
 	config:=agollo.GetCurrentApolloConfig()
+	cache:=agollo.GetApolloConfigCache()
 
 	var buffer bytes.Buffer
 	buffer.WriteString("<html>")
@@ -30,12 +31,25 @@ func GetAllConfig(rw http.ResponseWriter,req *http.Request)  {
 		buffer.WriteString(fmt.Sprintf("ReleaseKey : %s <br/>", config.ReleaseKey))
 
 		buffer.WriteString("Configurations: <br/>")
-		for key, value := range config.Configurations {
-			buffer.WriteString(fmt.Sprintf("key : %s , value : %s <br/>", key, value))
+		it := cache.NewIterator()
+		for i := 0; i < int(cache.EntryCount()); i++ {
+			entry := it.Next()
+			if entry == nil {
+				continue
+			}
+			buffer.WriteString(fmt.Sprintf("key : %s , value : %s <br/>", string(entry.Key), string(entry.Value)))
 		}
 	}else{
-		if config!=nil&&config.Configurations!=nil{
-			buffer.WriteString(fmt.Sprintf("key : %s , value : %s <br/>", key, config.Configurations[key]))
+		if config!=nil&&cache.EntryCount()>0{
+			value,err:=cache.Get([]byte(key))
+
+			if err!=nil {
+				buffer.WriteString(fmt.Sprintf("get key : %s fail, error:%s <br/>", key,err.Error()))
+			}else{
+				buffer.WriteString(fmt.Sprintf("key : %s , value : %s <br/>", key, string(value)))
+			}
+		}else{
+			buffer.WriteString("no value in cache!")
 		}
 	}
 
