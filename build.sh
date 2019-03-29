@@ -3,9 +3,12 @@ echo "构建$projectName....."
 echo "=============================="
 echo "设置GOPATH.."
 srcBaseDir="$(pwd)"
-cd ..
-baseDir="$(pwd)"
-export GOPATH=$baseDir
+export GOPATH=${srcBaseDir%src*}
+
+echo "导包中.."
+go get github.com/cihub/seelog
+go get github.com/coocood/freecache
+go get github.com/zouyx/agollo
 
 echo "编译中.."
 cd $srcBaseDir
