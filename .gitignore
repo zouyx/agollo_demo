@@ -12,3 +12,13 @@
 
 # Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
 .glide/
+### Go template
+# Binaries for programs and plugins
+*.exe~
+
+# Test binary, build with `go test -c`
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+
+.idea
+/apolloConfig.json
