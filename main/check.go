@@ -8,6 +8,14 @@ import (
 )
 
 func main() {
+	agollo.InitCustomConfig(func () (*agollo.AppConfig, error) {
+		return &agollo.AppConfig{
+			AppId:         "SampleApp",
+			Cluster:       "dev",
+			Ip:            "http://localhost:8180",
+			NamespaceName: "application",
+		}, nil
+	})
 	go agollo.Start()
 
 	http.HandleFunc("/check",GetAllConfig)
