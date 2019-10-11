@@ -1,18 +1,18 @@
 package main
 
 import (
-	"net/http"
-	"github.com/zouyx/agollo"
-	"fmt"
 	"bytes"
+	"fmt"
+	"github.com/zouyx/agollo"
+	"net/http"
 )
 
 func main() {
 	agollo.InitCustomConfig(func () (*agollo.AppConfig, error) {
 		return &agollo.AppConfig{
-			AppId:         "SampleApp",
+			AppId:         "testApplication_yang",
 			Cluster:       "dev",
-			Ip:            "http://localhost:8180",
+			Ip:            "http://106.12.25.204:8080",
 			NamespaceName: "application",
 		}, nil
 	})

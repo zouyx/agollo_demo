@@ -6,9 +6,8 @@ srcBaseDir="$(pwd)"
 export GOPATH=${srcBaseDir%src*}
 
 echo "导包中.."
-go get github.com/cihub/seelog
-go get github.com/coocood/freecache
-go get github.com/zouyx/agollo
+export GO111MODULE=on
+go get
 
 echo "编译中.."
 cd $srcBaseDir
