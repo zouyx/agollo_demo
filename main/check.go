@@ -8,7 +8,6 @@ import (
 	"strings"
 )
 
-var NamespaceName="application,product.joe"
 
 func main() {
 	//agollo.InitCustomConfig(func () (*agollo.AppConfig, error) {
@@ -27,7 +26,15 @@ func main() {
 }
 
 func GetAllConfig(rw http.ResponseWriter,req *http.Request)  {
-	config:=agollo.GetCurrentApolloConfig()["application"]
+	namespaces := make([]string,0)
+	var config *agollo.ApolloConnConfig
+	for k, v := range agollo.GetCurrentApolloConfig() {
+		if config==nil{
+			config=v
+		}
+		namespaces=append(namespaces,k)
+	}
+	var namespaceName=strings.Join(namespaces,",")
 
 	var buffer bytes.Buffer
 	buffer.WriteString("<html>")
@@ -39,7 +46,7 @@ func GetAllConfig(rw http.ResponseWriter,req *http.Request)  {
 		buffer.WriteString(fmt.Sprintf("Cluster : %s <br/>", config.Cluster))
 		buffer.WriteString(fmt.Sprintf("ReleaseKey : %s <br/>", config.ReleaseKey))
 
-		namespaces:=strings.Split(NamespaceName,",")
+		namespaces:=strings.Split(namespaceName,",")
 		for _, namespace := range namespaces {
 			writeConfig(&buffer,namespace)
 		}
@@ -54,14 +61,10 @@ func writeConfig(buffer *bytes.Buffer, namespace string) {
 	buffer.WriteString(fmt.Sprintf("NamespaceName : %s <br/>", namespace))
 	buffer.WriteString("Configurations: <br/>")
 	cache := agollo.GetConfigCache(namespace)
-	it := cache.NewIterator()
-	for i := 0; i < int(cache.EntryCount()); i++ {
-		entry := it.Next()
-		if entry == nil {
-			continue
-		}
-		buffer.WriteString(fmt.Sprintf("key : %s , value : %s <br/>", string(entry.Key), string(entry.Value)))
-	}
+	cache.Range(func(key, value interface{}) bool {
+		buffer.WriteString(fmt.Sprintf("key : %s , value : %s <br/>", key, string(value.([]byte))))
+		return true
+	})
 }
 
 type DefaultLogger struct {
