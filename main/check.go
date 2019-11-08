@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+var namespaces=make( map[string]*struct{},0)
 
 func main() {
 	//agollo.InitCustomConfig(func () (*agollo.AppConfig, error) {
@@ -18,7 +19,7 @@ func main() {
 	//		NamespaceName: NamespaceName,
 	//	}, nil
 	//})
-	go agollo.StartWithLogger(&DefaultLogger{})
+	agollo.StartWithLogger(&DefaultLogger{})
 
 	http.HandleFunc("/check",GetAllConfig)
 
@@ -26,15 +27,24 @@ func main() {
 }
 
 func GetAllConfig(rw http.ResponseWriter,req *http.Request)  {
-	namespaces := make([]string,0)
 	var config *agollo.ApolloConnConfig
 	for k, v := range agollo.GetCurrentApolloConfig() {
 		if config==nil{
 			config=v
 		}
-		namespaces=append(namespaces,k)
+		namespaces[k]= &struct{}{}
 	}
-	var namespaceName=strings.Join(namespaces,",")
+	n:=req.URL.Query().Get("namespace")
+	if n!=""{
+		namespaces[n]= &struct{}{}
+	}
+
+	arr:=make([]string,0)
+	for k:= range namespaces {
+		arr=append(arr,k)
+	}
+
+	var namespaceName=strings.Join(arr,",")
 
 	var buffer bytes.Buffer
 	buffer.WriteString("<html>")
@@ -52,6 +62,9 @@ func GetAllConfig(rw http.ResponseWriter,req *http.Request)  {
 		}
 	}
 
+	//buffer.WriteString(fmt.Sprintf("NamespaceName : %s <br/>", "testjson.json"))
+	//buffer.WriteString("Configurations: <br/>")
+	//cache := agollo.GetConfig("testjson.json")
 	buffer.WriteString("</html>")
 
 	rw.Write(buffer.Bytes())
