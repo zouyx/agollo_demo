@@ -3,9 +3,10 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/zouyx/agollo"
 	"net/http"
 	"strings"
+
+	"github.com/zouyx/agollo"
 )
 
 var namespaces=make( map[string]*struct{},0)
