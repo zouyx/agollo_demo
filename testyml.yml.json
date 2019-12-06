@@ -1,0 +1,1 @@
+{"appId":"testApplication_yang","cluster":"default","namespaceName":"testyml.yml","releaseKey":"20191101175607-0ab0805d89f83463","configurations":{"content":"a:\n    a1: a1\nb:\n    b1: b1\nc:\n    c1: c1"}}
