@@ -18,7 +18,7 @@ func main() {
 			Cluster:       "dev",
 			Ip:            "http://106.54.227.205:8080",
 			NamespaceName: "testjson.json,testyml.yml",
-			//IsBackupConfig:false,
+			IsBackupConfig:false,
 		}, nil
 	})
 	agollo.SetLogger(&DefaultLogger{})
