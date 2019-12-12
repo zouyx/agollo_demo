@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/zouyx/agollo"
+	"github.com/zouyx/agollo/v2"
 )
 
 var namespaces = make(map[string]*struct{}, 0)
@@ -16,8 +16,9 @@ func main() {
 		return &agollo.AppConfig{
 			AppId:         "testApplication_yang",
 			Cluster:       "dev",
-			Ip:            "http://106.12.25.204:8080",
-			NamespaceName: "aaaa",
+			Ip:            "http://106.54.227.205:8080",
+			NamespaceName: "testjson.json,testyml.yml",
+			//IsBackupConfig:false,
 		}, nil
 	})
 	agollo.SetLogger(&DefaultLogger{})
@@ -109,7 +110,7 @@ func (this *DefaultLogger) Errorf(format string, params ...interface{}) error {
 }
 
 func (this *DefaultLogger) Debug(v ...interface{}) {
-	//fmt.Println(v)
+	fmt.Println(v)
 }
 func (this *DefaultLogger) Info(v ...interface{}) {
 	this.Debug(v)
