@@ -3,21 +3,23 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"github.com/zouyx/agollo/v3/env"
+	"github.com/zouyx/agollo/v3/env/config"
 	"net/http"
 	"strings"
 
-	"github.com/zouyx/agollo/v2"
+	"github.com/zouyx/agollo/v3"
 )
 
 var namespaces = make(map[string]*struct{}, 0)
 
 func main() {
-	agollo.InitCustomConfig(func() (*agollo.AppConfig, error) {
-		return &agollo.AppConfig{
-			AppId:         "testApplication_yang",
+	agollo.InitCustomConfig(func() (*config.AppConfig, error) {
+		return &config.AppConfig{
+			AppID:         "testApplication_yang",
 			Cluster:       "dev",
-			Ip:            "http://106.54.227.205:8080",
-			NamespaceName: "testjson.json,testyml.yml",
+			IP:            "http://106.54.227.205:8080",
+			NamespaceName: "testyml.yml",
 			IsBackupConfig:false,
 		}, nil
 	})
@@ -35,8 +37,8 @@ func main() {
 }
 
 func GetAllConfig(rw http.ResponseWriter, req *http.Request) {
-	var config *agollo.ApolloConnConfig
-	for k, v := range agollo.GetCurrentApolloConfig() {
+	var config *env.ApolloConnConfig
+	for k, v := range env.GetCurrentApolloConfig() {
 		if config == nil {
 			config = v
 		}
@@ -60,7 +62,7 @@ func GetAllConfig(rw http.ResponseWriter, req *http.Request) {
 
 	key := req.URL.Query().Get("key")
 	if key == "" {
-		buffer.WriteString(fmt.Sprintf("AppId : %s  <br/>", config.AppId))
+		buffer.WriteString(fmt.Sprintf("AppId : %s  <br/>", config.AppID))
 		buffer.WriteString(fmt.Sprintf("Cluster : %s <br/>", config.Cluster))
 		buffer.WriteString(fmt.Sprintf("ReleaseKey : %s <br/>", config.ReleaseKey))
 
