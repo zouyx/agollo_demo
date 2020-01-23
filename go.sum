@@ -3,3 +3,5 @@ github.com/tevid/gohamcrest v1.1.1/go.mod h1:3UvtWlqm8j5JbwYZh80D/PVBt0mJ1eJiYgZ
 github.com/zouyx/agollo/v2 v2.2.4 h1:js5i5Pg7RSi9u3ff6Tx0shyPJ1bv6XKbnWAj+N6mxGg=
 github.com/zouyx/agollo/v2 v2.2.4/go.mod h1:GCWwP0mqcnycTe6xApchNDLRJ0NbrpXC9u4995LdjlE=
 github.com/zouyx/agollo/v3 v3.0.0-alpha/go.mod h1:wN/kLDwV3MijDaGNCyaLDKiJXgK3Lz+y+WrrAIupSOw=
+github.com/zouyx/agollo/v3 v3.0.0-beta h1:MUSvvuGx+dfNu0UVEl++yGz7rPGpIyjUI3hXldIHRx8=
+github.com/zouyx/agollo/v3 v3.0.0-beta/go.mod h1:wN/kLDwV3MijDaGNCyaLDKiJXgK3Lz+y+WrrAIupSOw=
