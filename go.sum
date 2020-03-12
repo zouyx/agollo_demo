@@ -5,3 +5,5 @@ github.com/zouyx/agollo/v2 v2.2.4/go.mod h1:GCWwP0mqcnycTe6xApchNDLRJ0NbrpXC9u49
 github.com/zouyx/agollo/v3 v3.0.0-alpha/go.mod h1:wN/kLDwV3MijDaGNCyaLDKiJXgK3Lz+y+WrrAIupSOw=
 github.com/zouyx/agollo/v3 v3.0.0-beta h1:MUSvvuGx+dfNu0UVEl++yGz7rPGpIyjUI3hXldIHRx8=
 github.com/zouyx/agollo/v3 v3.0.0-beta/go.mod h1:wN/kLDwV3MijDaGNCyaLDKiJXgK3Lz+y+WrrAIupSOw=
+github.com/zouyx/agollo/v3 v3.0.0 h1:XdAauDnMSoMEfBA6YESEQKokdI9B8CyqYNr2xHsCxIo=
+github.com/zouyx/agollo/v3 v3.0.0/go.mod h1:wN/kLDwV3MijDaGNCyaLDKiJXgK3Lz+y+WrrAIupSOw=
