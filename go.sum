@@ -7,3 +7,5 @@ github.com/zouyx/agollo/v3 v3.0.0-beta h1:MUSvvuGx+dfNu0UVEl++yGz7rPGpIyjUI3hXld
 github.com/zouyx/agollo/v3 v3.0.0-beta/go.mod h1:wN/kLDwV3MijDaGNCyaLDKiJXgK3Lz+y+WrrAIupSOw=
 github.com/zouyx/agollo/v3 v3.0.0 h1:XdAauDnMSoMEfBA6YESEQKokdI9B8CyqYNr2xHsCxIo=
 github.com/zouyx/agollo/v3 v3.0.0/go.mod h1:wN/kLDwV3MijDaGNCyaLDKiJXgK3Lz+y+WrrAIupSOw=
+github.com/zouyx/agollo/v3 v3.0.1 h1:kV26O4zklg75tdzZoZstB8cg0wjemKkW9emNn03QUBM=
+github.com/zouyx/agollo/v3 v3.0.1/go.mod h1:wN/kLDwV3MijDaGNCyaLDKiJXgK3Lz+y+WrrAIupSOw=
