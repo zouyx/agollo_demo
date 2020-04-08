@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/zouyx/agollo/v3/env"
-	"github.com/zouyx/agollo/v3/env/config"
 	"net/http"
 	"strings"
 
@@ -14,15 +13,15 @@ import (
 var namespaces = make(map[string]*struct{}, 0)
 
 func main() {
-	agollo.InitCustomConfig(func() (*config.AppConfig, error) {
-		return &config.AppConfig{
-			AppID:         "testApplication_yang",
-			Cluster:       "dev",
-			IP:            "http://106.54.227.205:8080",
-			NamespaceName: "testyml.yml",
-			IsBackupConfig:false,
-		}, nil
-	})
+	//agollo.InitCustomConfig(func() (*config.AppConfig, error) {
+	//	return &config.AppConfig{
+	//		AppID:         "testApplication_yang",
+	//		Cluster:       "dev",
+	//		IP:            "http://106.54.227.205:8080",
+	//		NamespaceName: "product.joe",
+	//		IsBackupConfig:false,
+	//	}, nil
+	//})
 	agollo.SetLogger(&DefaultLogger{})
 
 	error := agollo.Start()
