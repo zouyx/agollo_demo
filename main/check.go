@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/zouyx/agollo/v3/env"
+	"github.com/zouyx/agollo/v3/env/config"
 	"net/http"
 	"strings"
 
@@ -13,15 +14,16 @@ import (
 var namespaces = make(map[string]*struct{}, 0)
 
 func main() {
-	//agollo.InitCustomConfig(func() (*config.AppConfig, error) {
-	//	return &config.AppConfig{
-	//		AppID:         "testApplication_yang",
-	//		Cluster:       "dev",
-	//		IP:            "http://106.54.227.205:8080",
-	//		NamespaceName: "product.joe",
-	//		IsBackupConfig:false,
-	//	}, nil
-	//})
+	agollo.InitCustomConfig(func() (*config.AppConfig, error) {
+		return &config.AppConfig{
+			AppID:         "testApplication_yang",
+			Cluster:       "dev",
+			IP:            "http://106.54.227.205:8080",
+			NamespaceName: "product.joe",
+			IsBackupConfig:false,
+			Secret:"6ce3ff7e96a24335a9634fe9abca6d51",
+		}, nil
+	})
 	agollo.SetLogger(&DefaultLogger{})
 
 	error := agollo.Start()
@@ -100,14 +102,12 @@ func (this *DefaultLogger) Infof(format string, params ...interface{}) {
 	this.Debug(format, params)
 }
 
-func (this *DefaultLogger) Warnf(format string, params ...interface{}) error {
+func (this *DefaultLogger) Warnf(format string, params ...interface{}) {
 	this.Debug(format, params)
-	return nil
 }
 
-func (this *DefaultLogger) Errorf(format string, params ...interface{}) error {
+func (this *DefaultLogger) Errorf(format string, params ...interface{}) {
 	this.Debug(format, params)
-	return nil
 }
 
 func (this *DefaultLogger) Debug(v ...interface{}) {
@@ -117,12 +117,10 @@ func (this *DefaultLogger) Info(v ...interface{}) {
 	this.Debug(v)
 }
 
-func (this *DefaultLogger) Warn(v ...interface{}) error {
+func (this *DefaultLogger) Warn(v ...interface{}) {
 	this.Debug(v)
-	return nil
 }
 
-func (this *DefaultLogger) Error(v ...interface{}) error {
+func (this *DefaultLogger) Error(v ...interface{}) {
 	this.Debug(v)
-	return nil
 }
