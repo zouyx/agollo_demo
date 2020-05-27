@@ -2,3 +2,5 @@ github.com/tevid/gohamcrest v1.1.1 h1:ou+xSqlIw1xfGTg1uq1nif/htZ2S3EzRqLm2BP+tYU
 github.com/tevid/gohamcrest v1.1.1/go.mod h1:3UvtWlqm8j5JbwYZh80D/PVBt0mJ1eJiYgZMibh0H/k=
 github.com/zouyx/agollo/v3 v3.0.1 h1:kV26O4zklg75tdzZoZstB8cg0wjemKkW9emNn03QUBM=
 github.com/zouyx/agollo/v3 v3.0.1/go.mod h1:wN/kLDwV3MijDaGNCyaLDKiJXgK3Lz+y+WrrAIupSOw=
+github.com/zouyx/agollo/v3 v3.1.0 h1:1I61dyK4q0MpHTiXCvF/Y8w0NJAA6ZKznNgK1JK0RH4=
+github.com/zouyx/agollo/v3 v3.1.0/go.mod h1:wN/kLDwV3MijDaGNCyaLDKiJXgK3Lz+y+WrrAIupSOw=
