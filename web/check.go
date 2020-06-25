@@ -19,9 +19,8 @@ func main() {
 			AppID:         "testApplication_yang",
 			Cluster:       "dev",
 			IP:            "http://106.54.227.205:8080",
-			NamespaceName: "product.joe",
+			NamespaceName: "testproperties", //yml:testyml.yml , xml:joe2.xml json:testjson.json
 			IsBackupConfig:false,
-			Secret:"6ce3ff7e96a24335a9634fe9abca6d51",
 		}, nil
 	})
 	agollo.SetLogger(&DefaultLogger{})
@@ -29,8 +28,6 @@ func main() {
 	error := agollo.Start()
 
 	fmt.Println("err:", error)
-
-	//agollo.StartWithLogger(&DefaultLogger{})
 
 	http.HandleFunc("/check", GetAllConfig)
 
