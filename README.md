@@ -11,8 +11,7 @@ Dependence
 ## 使用go get方式
 
 ```
-go get -u github.com/cihub/seelog
-go get -u github.com/zouyx/agollo
+go mod
 ```
 
 ## 使用gopm方式(推荐)
@@ -29,25 +28,9 @@ Installation
 
 如果还没有安装Go开发环境，请参考以下文档[Getting Started](http://golang.org/doc/install.html) ，安装完成后，请执行以下命令：
 
-## Mac/Linux
+## 用法
 
-``` shell
-./build.sh
-```
-
-## Windows
-
-``` shell
-```
-
-*请注意*: 最好使用Go 1.8进行编译
-
-Run
-------------
-完成编译后
-
-- 进入build文件夹，配置app.properties（参考：[使用配置](https://github.com/zouyx/agollo/wiki/使用指南)）
-- 执行
-  - Mac/Linux : ./agollo-demo
-  - Windows : agollo-demo.exe
-  
+* [网页版](web)
+* [hello world](helloworld)
+* [自定义用法](custom)
+    * [自定义log](custom/log)
