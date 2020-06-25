@@ -33,4 +33,6 @@ Installation
 * [网页版](web)
 * [hello world](helloworld)
 * [自定义用法](custom)
-    * [自定义log](custom/log)
+    * [自定义日志组件](custom/log)
+    * [自定义缓存组件](custom/cache)
+    * [监听变更事件](custom/listener)

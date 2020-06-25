@@ -1,9 +1,12 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"github.com/zouyx/agollo/v3"
+	"github.com/zouyx/agollo/v3/agcache"
 	"github.com/zouyx/agollo/v3/env/config"
+	"sync"
 )
 
 func main() {
@@ -18,7 +21,7 @@ func main() {
 	agollo.InitCustomConfig(func() (*config.AppConfig, error) {
 		return c, nil
 	})
-	agollo.SetLogger(&DefaultLogger{})
+	agollo.SetCache(&DefaultCacheFactory{})
 
 	error := agollo.Start()
 
@@ -34,37 +37,58 @@ func writeConfig(namespace string) {
 		return true
 	})
 }
-
-type DefaultLogger struct {
+//DefaultCache 默认缓存
+type DefaultCache struct {
+	defaultCache sync.Map
 }
 
-func (this *DefaultLogger) Debugf(format string, params ...interface{}) {
-	this.Debug(format, params)
+//Set 获取缓存
+func (d *DefaultCache)Set(key string, value []byte, expireSeconds int) (err error)  {
+	d.defaultCache.Store(key,value)
+	return nil
 }
 
-func (this *DefaultLogger) Infof(format string, params ...interface{}) {
-	this.Debug(format, params)
+//EntryCount 获取实体数量
+func (d *DefaultCache)EntryCount() (entryCount int64){
+	count:=int64(0)
+	d.defaultCache.Range(func(key, value interface{}) bool {
+		count++
+		return true
+	})
+	return count
 }
 
-func (this *DefaultLogger) Warnf(format string, params ...interface{}) {
-	this.Debug(format, params)
+//Get 获取缓存
+func (d *DefaultCache)Get(key string) (value []byte, err error){
+	v, ok := d.defaultCache.Load(key)
+	if !ok{
+		return nil,errors.New("load default cache fail")
+	}
+	return v.([]byte),nil
 }
 
-func (this *DefaultLogger) Errorf(format string, params ...interface{}) {
-	this.Debug(format, params)
+//Range 遍历缓存
+func (d *DefaultCache)Range(f func(key, value interface{}) bool){
+	d.defaultCache.Range(f)
 }
 
-func (this *DefaultLogger) Debug(v ...interface{}) {
-	fmt.Println(v)
-}
-func (this *DefaultLogger) Info(v ...interface{}) {
-	this.Debug(v)
-}
-
-func (this *DefaultLogger) Warn(v ...interface{}) {
-	this.Debug(v)
+//Del 删除缓存
+func (d *DefaultCache)Del(key string) (affected bool) {
+	d.defaultCache.Delete(key)
+	return true
 }
 
-func (this *DefaultLogger) Error(v ...interface{}) {
-	this.Debug(v)
+//Clear 清除所有缓存
+func (d *DefaultCache)Clear() {
+	d.defaultCache=sync.Map{}
+}
+
+//DefaultCacheFactory 构造默认缓存组件工厂类
+type DefaultCacheFactory struct {
+
+}
+
+//Create 创建默认缓存组件
+func (d *DefaultCacheFactory) Create()agcache.CacheInterface {
+	return &DefaultCache{}
 }
