@@ -180,6 +180,8 @@ github.com/zouyx/agollo/v3 v3.4.2 h1:a4MFqQtKeVBCFlH4rovQRx+Mzu9F0vmswURFm66pJlU
 github.com/zouyx/agollo/v3 v3.4.2/go.mod h1:ag0XmE1r4iAgPd6PUnU9TJ0DMEjM1VKX1HUNqQJ2ywU=
 github.com/zouyx/agollo/v3 v3.4.3 h1:e3UniD+6fWK9n9l8qOkPfJO39VZFZZsqZp9WnMqetOQ=
 github.com/zouyx/agollo/v3 v3.4.3/go.mod h1:ag0XmE1r4iAgPd6PUnU9TJ0DMEjM1VKX1HUNqQJ2ywU=
+github.com/zouyx/agollo/v3 v3.4.4 h1:5G7QNw3fw74Ns8SfnHNhjndV2mlz5Fg8bB7q84ydFYI=
+github.com/zouyx/agollo/v3 v3.4.4/go.mod h1:ag0XmE1r4iAgPd6PUnU9TJ0DMEjM1VKX1HUNqQJ2ywU=
 go.etcd.io/bbolt v1.3.2/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.opencensus.io v0.21.0/go.mod h1:mSImk1erAIZhrmZN+AvHh14ztQfjbGwt4TtuofqLduU=
 go.opencensus.io v0.22.0/go.mod h1:+kGneAE2xo2IficOXnaByMWTGM9T73dGwxeWcUqIpI8=
