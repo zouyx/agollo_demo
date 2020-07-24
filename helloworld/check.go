@@ -29,7 +29,7 @@ func main() {
 func writeConfig(namespace string) {
 	cache := agollo.GetConfigCache(namespace)
 	cache.Range(func(key, value interface{}) bool {
-		fmt.Println("key : ", key, ", value :", value)
+		fmt.Println("key : ", key, ", value :", value) 
 		return true
 	})
 }
