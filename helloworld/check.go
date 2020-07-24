@@ -11,7 +11,7 @@ func main() {
 		AppID:          "testApplication_yang",
 		Cluster:        "dev",
 		IP:             "http://106.54.227.205:8080",
-		NamespaceName:  "testyml.yml",
+		NamespaceName:  "dubbo",
 		IsBackupConfig: false,
 		Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
 	}
@@ -29,7 +29,7 @@ func main() {
 func writeConfig(namespace string) {
 	cache := agollo.GetConfigCache(namespace)
 	cache.Range(func(key, value interface{}) bool {
-		fmt.Println("key : ", key, ", value :", string(value.([]byte)))
+		fmt.Println("key : ", key, ", value :", value)
 		return true
 	})
 }
