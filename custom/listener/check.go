@@ -47,8 +47,12 @@ func (c *CustomChangeListener) OnChange(changeEvent *storage.ChangeEvent) {
 	//write your code here
 	fmt.Println(changeEvent.Changes)
 	for key, value := range changeEvent.Changes {
-		fmt.Println("key : ", key, ", value :", value)
+		fmt.Println("change key : ", key, ", value :", value)
 	}
 	fmt.Println(changeEvent.Namespace)
 	c.wg.Done()
+}
+
+func (c *CustomChangeListener) OnNewestChange(event *storage.FullChangeEvent) {
+	//write your code here
 }
