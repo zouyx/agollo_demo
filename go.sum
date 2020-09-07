@@ -166,6 +166,7 @@ github.com/tevid/gohamcrest v1.1.1 h1:ou+xSqlIw1xfGTg1uq1nif/htZ2S3EzRqLm2BP+tYU
 github.com/tevid/gohamcrest v1.1.1/go.mod h1:3UvtWlqm8j5JbwYZh80D/PVBt0mJ1eJiYgZMibh0H/k=
 github.com/tmc/grpc-websocket-proxy v0.0.0-20190109142713-0ad062ec5ee5/go.mod h1:ncp9v5uamzpCO7NfCPTXjqaC+bZgJeR0sMTm6dMHP7U=
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=
+github.com/zouyx/agollo v1.9.0 h1:75ZZD6Mwinry71Ds4ZpB9dOTDn3hC8cNSUlgVO5uUxU=
 github.com/zouyx/agollo/v3 v3.0.1 h1:kV26O4zklg75tdzZoZstB8cg0wjemKkW9emNn03QUBM=
 github.com/zouyx/agollo/v3 v3.0.1/go.mod h1:wN/kLDwV3MijDaGNCyaLDKiJXgK3Lz+y+WrrAIupSOw=
 github.com/zouyx/agollo/v3 v3.1.0 h1:1I61dyK4q0MpHTiXCvF/Y8w0NJAA6ZKznNgK1JK0RH4=
@@ -186,6 +187,8 @@ github.com/zouyx/agollo/v3 v3.4.4 h1:5G7QNw3fw74Ns8SfnHNhjndV2mlz5Fg8bB7q84ydFYI
 github.com/zouyx/agollo/v3 v3.4.4/go.mod h1:ag0XmE1r4iAgPd6PUnU9TJ0DMEjM1VKX1HUNqQJ2ywU=
 github.com/zouyx/agollo/v3 v3.4.5 h1:7YCxzY9ZYaH9TuVUBvmI6Tk0mwMggikah+cfbYogcHQ=
 github.com/zouyx/agollo/v3 v3.4.5/go.mod h1:LJr3kDmm23QSW+F1Ol4TMHDa7HvJvscMdVxJ2IpUTVc=
+github.com/zouyx/agollo/v4 v4.0.0-20200906104415-bf591b9e6f72/go.mod h1:unhojnZiGLlT4gLpWz3Oa7sGcChZWv/1DJBkV6s8uAE=
+github.com/zouyx/agollo/v4 v4.0.0-20200907155315-ec29c24c6dbe/go.mod h1:unhojnZiGLlT4gLpWz3Oa7sGcChZWv/1DJBkV6s8uAE=
 go.etcd.io/bbolt v1.3.2/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.opencensus.io v0.21.0/go.mod h1:mSImk1erAIZhrmZN+AvHh14ztQfjbGwt4TtuofqLduU=
 go.opencensus.io v0.22.0/go.mod h1:+kGneAE2xo2IficOXnaByMWTGM9T73dGwxeWcUqIpI8=

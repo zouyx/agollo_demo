@@ -3,9 +3,9 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/zouyx/agollo/v3"
-	"github.com/zouyx/agollo/v3/agcache"
-	"github.com/zouyx/agollo/v3/env/config"
+	"github.com/zouyx/agollo/v4"
+	"github.com/zouyx/agollo/v4/agcache"
+	"github.com/zouyx/agollo/v4/env/config"
 	"sync"
 )
 
@@ -18,32 +18,34 @@ func main() {
 		IsBackupConfig: false,
 		Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
 	}
-	agollo.InitCustomConfig(func() (*config.AppConfig, error) {
-		return c, nil
-	})
+	client := agollo.Create()
+
 	agollo.SetCache(&DefaultCacheFactory{})
 
-	error := agollo.Start()
+	error:=client.StartWithConfig(func() (*config.AppConfig, error) {
+		return c, nil
+	})
 
 	fmt.Println("err:", error)
 
-	writeConfig(c.NamespaceName)
+	writeConfig(c.NamespaceName,client)
 }
 
-func writeConfig(namespace string) {
-	cache := agollo.GetConfigCache(namespace)
+func writeConfig(namespace string,client *agollo.Client) {
+	cache := client.GetConfigCache(namespace)
 	cache.Range(func(key, value interface{}) bool {
-		fmt.Println("key : ", key, ", value :", string(value.([]byte)))
+		fmt.Println("key : ", key, ", value :", value)
 		return true
 	})
 }
+
 //DefaultCache 默认缓存
 type DefaultCache struct {
 	defaultCache sync.Map
 }
 
 //Set 获取缓存
-func (d *DefaultCache)Set(key string, value []byte, expireSeconds int) (err error)  {
+func (d *DefaultCache)Set(key string, value interface{}, expireSeconds int) (err error)  {
 	d.defaultCache.Store(key,value)
 	return nil
 }
@@ -59,7 +61,7 @@ func (d *DefaultCache)EntryCount() (entryCount int64){
 }
 
 //Get 获取缓存
-func (d *DefaultCache)Get(key string) (value []byte, err error){
+func (d *DefaultCache)Get(key string) (value interface{}, err error){
 	v, ok := d.defaultCache.Load(key)
 	if !ok{
 		return nil,errors.New("load default cache fail")
