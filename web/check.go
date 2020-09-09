@@ -37,10 +37,12 @@ func main() {
 }
 
 func GetAllConfig(rw http.ResponseWriter, req *http.Request) {
-	client.GetApolloConfigCache().Range(func(key, value interface{}) bool {
-		namespaces[key.(string)] = &struct{}{}
-		return true
-	})
+	if client.GetApolloConfigCache()!=nil{
+		client.GetApolloConfigCache().Range(func(key, value interface{}) bool {
+			namespaces[key.(string)] = &struct{}{}
+			return true
+		})
+	}
 
 	n := req.URL.Query().Get("namespace")
 	if n != "" {
@@ -82,6 +84,9 @@ func writeConfig(buffer *bytes.Buffer, namespace string) {
 	buffer.WriteString(fmt.Sprintf("NamespaceName : %s <br/>", namespace))
 	buffer.WriteString("Configurations: <br/>")
 	cache := client.GetConfigCache(namespace)
+	if cache==nil{
+		return
+	}
 	cache.Range(func(key, value interface{}) bool {
 		buffer.WriteString(fmt.Sprintf("key : %s , value : %s <br/>", key, string(value.([]byte))))
 		return true
