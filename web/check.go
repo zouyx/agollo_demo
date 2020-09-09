@@ -12,11 +12,12 @@ import (
 
 var namespaces = make(map[string]*struct{}, 0)
 var appConfig= &config.AppConfig{
-	AppID:         "testApplication_yang",
-	Cluster:       "dev",
-	IP:            "http://106.54.227.205:8080",
-	NamespaceName: "testproperties", //yml:testyml.yml , xml:joe2.xml json:testjson.json
-	IsBackupConfig:false,
+	AppID:          "testApplication_yang",
+	Cluster:        "dev",
+	IP:             "http://106.54.227.205:8080",
+	NamespaceName:  "dubbo",
+	IsBackupConfig: false,
+	Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
 }
 
 var client *agollo.Client
@@ -37,12 +38,11 @@ func main() {
 }
 
 func GetAllConfig(rw http.ResponseWriter, req *http.Request) {
-	if client.GetApolloConfigCache()!=nil{
-		client.GetApolloConfigCache().Range(func(key, value interface{}) bool {
-			namespaces[key.(string)] = &struct{}{}
-			return true
-		})
+	ns := strings.Split(appConfig.NamespaceName, ",")
+	for _, n := range ns {
+		namespaces[n] = &struct{}{}
 	}
+
 
 	n := req.URL.Query().Get("namespace")
 	if n != "" {
@@ -88,7 +88,7 @@ func writeConfig(buffer *bytes.Buffer, namespace string) {
 		return
 	}
 	cache.Range(func(key, value interface{}) bool {
-		buffer.WriteString(fmt.Sprintf("key : %s , value : %s <br/>", key, string(value.([]byte))))
+		buffer.WriteString(fmt.Sprintf("key : %s , value : %s <br/>", key, value))
 		return true
 	})
 }
