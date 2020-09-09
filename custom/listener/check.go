@@ -17,18 +17,17 @@ func main() {
 		IsBackupConfig: false,
 		Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
 	}
-	client := agollo.Create()
 	c2 := &CustomChangeListener{}
 	c2.wg.Add(5)
 	agollo.AddChangeListener(c2)
 
 
-	error:=client.StartWithConfig(func() (*config.AppConfig, error) {
+	client,err:=agollo.StartWithConfig(func() (*config.AppConfig, error) {
 		return c, nil
 	})
 
 
-	fmt.Println("err:", error)
+	fmt.Println("err:", err)
 
 	c2.wg.Wait()
 	writeConfig(c.NamespaceName,client)

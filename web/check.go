@@ -23,14 +23,14 @@ var appConfig= &config.AppConfig{
 var client *agollo.Client
 
 func main() {
-	client = agollo.Create()
+	var err error
 	agollo.SetLogger(&DefaultLogger{})
 
-	error:=client.StartWithConfig(func() (*config.AppConfig, error) {
+	client,err=agollo.StartWithConfig(func() (*config.AppConfig, error) {
 		return appConfig, nil
 	})
 
-	fmt.Println("err:", error)
+	fmt.Println("err:", err)
 
 	http.HandleFunc("/check", GetAllConfig)
 
