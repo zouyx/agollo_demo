@@ -19,12 +19,11 @@ func main() {
 	}
 	c2 := &CustomChangeListener{}
 	c2.wg.Add(5)
-	agollo.AddChangeListener(c2)
-
 
 	client,err:=agollo.StartWithConfig(func() (*config.AppConfig, error) {
 		return c, nil
 	})
+	client.AddChangeListener(c2)
 
 
 	fmt.Println("err:", err)
