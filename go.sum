@@ -176,6 +176,8 @@ github.com/tmc/grpc-websocket-proxy v0.0.0-20190109142713-0ad062ec5ee5/go.mod h1
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=
 github.com/zouyx/agollo/v4 v4.0.0-20200913150511-a6a7f5445933 h1:+Lcg+8K5Xncc/70A3cd/igwVodIeQ9wvwUCd5NUPpyw=
 github.com/zouyx/agollo/v4 v4.0.0-20200913150511-a6a7f5445933/go.mod h1:unhojnZiGLlT4gLpWz3Oa7sGcChZWv/1DJBkV6s8uAE=
+github.com/zouyx/agollo/v4 v4.0.0-20200914102923-3ec4472360b3 h1:AlsLpXoosCGkfHNFnpg70ncrfF4d/lVSgL8s0iAyi0I=
+github.com/zouyx/agollo/v4 v4.0.0-20200914102923-3ec4472360b3/go.mod h1:unhojnZiGLlT4gLpWz3Oa7sGcChZWv/1DJBkV6s8uAE=
 go.etcd.io/bbolt v1.3.2/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.opencensus.io v0.21.0/go.mod h1:mSImk1erAIZhrmZN+AvHh14ztQfjbGwt4TtuofqLduU=
 go.opencensus.io v0.22.0/go.mod h1:+kGneAE2xo2IficOXnaByMWTGM9T73dGwxeWcUqIpI8=
