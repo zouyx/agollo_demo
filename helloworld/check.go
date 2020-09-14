@@ -16,11 +16,14 @@ func main() {
 		Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
 	}
 
-	_,error:=agollo.StartWithConfig(func() (*config.AppConfig, error) {
+	client,err:=agollo.StartWithConfig(func() (*config.AppConfig, error) {
 		return c, nil
 	})
 
-	fmt.Println("err:", error)
+	if err!=nil{
+		fmt.Println("err:", err)
+		panic(err)
+	}
 
 	writeConfig(c.NamespaceName,client)
 }
