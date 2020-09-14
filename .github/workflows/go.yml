@@ -34,7 +34,7 @@ jobs:
         run: go run helloworld/check.go
 
       - name: Cache
-          run: go run custom/cache/check.go
+        run: go run custom/cache/check.go
 
       - name: Log
-          run: go run custom/log/check.go
+        run: go run custom/log/check.go
