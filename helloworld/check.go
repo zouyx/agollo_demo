@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/zouyx/agollo/v3"
-	"github.com/zouyx/agollo/v3/env/config"
+	"github.com/zouyx/agollo/v4"
+	"github.com/zouyx/agollo/v4/env/config"
 )
 
 func main() {
@@ -15,19 +15,18 @@ func main() {
 		IsBackupConfig: false,
 		Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
 	}
-	agollo.InitCustomConfig(func() (*config.AppConfig, error) {
+
+	_,error:=agollo.StartWithConfig(func() (*config.AppConfig, error) {
 		return c, nil
 	})
 
-	error := agollo.Start()
-
 	fmt.Println("err:", error)
 
-	writeConfig(c.NamespaceName)
+	writeConfig(c.NamespaceName,client)
 }
 
-func writeConfig(namespace string) {
-	cache := agollo.GetConfigCache(namespace)
+func writeConfig(namespace string,client *agollo.Client) {
+	cache := client.GetConfigCache(namespace)
 	cache.Range(func(key, value interface{}) bool {
 		fmt.Println("key : ", key, ", value :", value) 
 		return true

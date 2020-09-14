@@ -3,31 +3,34 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/zouyx/agollo/v3/env"
-	"github.com/zouyx/agollo/v3/env/config"
+	"github.com/zouyx/agollo/v4/env/config"
 	"net/http"
 	"strings"
 
-	"github.com/zouyx/agollo/v3"
+	"github.com/zouyx/agollo/v4"
 )
 
 var namespaces = make(map[string]*struct{}, 0)
+var appConfig= &config.AppConfig{
+	AppID:          "testApplication_yang",
+	Cluster:        "dev",
+	IP:             "http://106.54.227.205:8080",
+	NamespaceName:  "dubbo",
+	IsBackupConfig: false,
+	Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
+}
+
+var client *agollo.Client
 
 func main() {
-	agollo.InitCustomConfig(func() (*config.AppConfig, error) {
-		return &config.AppConfig{
-			AppID:         "testApplication_yang",
-			Cluster:       "dev",
-			IP:            "http://106.54.227.205:8080",
-			NamespaceName: "testproperties", //yml:testyml.yml , xml:joe2.xml json:testjson.json
-			IsBackupConfig:false,
-		}, nil
-	})
+	var err error
 	agollo.SetLogger(&DefaultLogger{})
 
-	error := agollo.Start()
+	client,err=agollo.StartWithConfig(func() (*config.AppConfig, error) {
+		return appConfig, nil
+	})
 
-	fmt.Println("err:", error)
+	fmt.Println("err:", err)
 
 	http.HandleFunc("/check", GetAllConfig)
 
@@ -35,13 +38,12 @@ func main() {
 }
 
 func GetAllConfig(rw http.ResponseWriter, req *http.Request) {
-	var config *env.ApolloConnConfig
-	for k, v := range env.GetCurrentApolloConfig() {
-		if config == nil {
-			config = v
-		}
-		namespaces[k] = &struct{}{}
+	ns := strings.Split(appConfig.NamespaceName, ",")
+	for _, n := range ns {
+		namespaces[n] = &struct{}{}
 	}
+
+
 	n := req.URL.Query().Get("namespace")
 	if n != "" {
 		namespaces[n] = &struct{}{}
@@ -60,12 +62,12 @@ func GetAllConfig(rw http.ResponseWriter, req *http.Request) {
 
 	key := req.URL.Query().Get("key")
 	if key == "" {
-		buffer.WriteString(fmt.Sprintf("AppId : %s  <br/>", config.AppID))
-		buffer.WriteString(fmt.Sprintf("Cluster : %s <br/>", config.Cluster))
-		buffer.WriteString(fmt.Sprintf("ReleaseKey : %s <br/>", config.ReleaseKey))
+		buffer.WriteString(fmt.Sprintf("AppId : %s  <br/>", appConfig.AppID))
+		buffer.WriteString(fmt.Sprintf("Cluster : %s <br/>", appConfig.Cluster))
 
 		namespaces := strings.Split(namespaceName, ",")
 		for _, namespace := range namespaces {
+			buffer.WriteString(fmt.Sprintf("ReleaseKey : %s <br/>", appConfig.GetCurrentApolloConfig().GetReleaseKey(namespace)))
 			writeConfig(&buffer, namespace)
 		}
 	}
@@ -81,9 +83,12 @@ func GetAllConfig(rw http.ResponseWriter, req *http.Request) {
 func writeConfig(buffer *bytes.Buffer, namespace string) {
 	buffer.WriteString(fmt.Sprintf("NamespaceName : %s <br/>", namespace))
 	buffer.WriteString("Configurations: <br/>")
-	cache := agollo.GetConfigCache(namespace)
+	cache := client.GetConfigCache(namespace)
+	if cache==nil{
+		return
+	}
 	cache.Range(func(key, value interface{}) bool {
-		buffer.WriteString(fmt.Sprintf("key : %s , value : %s <br/>", key, string(value.([]byte))))
+		buffer.WriteString(fmt.Sprintf("key : %s , value : %s <br/>", key, value))
 		return true
 	})
 }

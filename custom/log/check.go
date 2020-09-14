@@ -1,13 +1,12 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"github.com/zouyx/agollo/v3"
-	"github.com/zouyx/agollo/v3/agcache"
-	"github.com/zouyx/agollo/v3/env/config"
-	"sync"
+	"github.com/cihub/seelog"
+	"github.com/zouyx/agollo/v4"
+	"github.com/zouyx/agollo/v4/env/config"
 )
+
 
 func main() {
 	c := &config.AppConfig{
@@ -18,77 +17,73 @@ func main() {
 		IsBackupConfig: false,
 		Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
 	}
-	agollo.InitCustomConfig(func() (*config.AppConfig, error) {
+
+	loggerInterface:=initSeeLog("seelog.xml")
+	agollo.SetLogger(&DefaultLogger{loggerInterface})
+
+	client,error:=agollo.StartWithConfig(func() (*config.AppConfig, error) {
 		return c, nil
 	})
-	agollo.SetCache(&DefaultCacheFactory{})
-
-	error := agollo.Start()
 
 	fmt.Println("err:", error)
 
-	writeConfig(c.NamespaceName)
+	writeConfig(c.NamespaceName,client)
 }
 
-func writeConfig(namespace string) {
-	cache := agollo.GetConfigCache(namespace)
+func writeConfig(namespace string,client *agollo.Client) {
+	cache := client.GetConfigCache(namespace)
 	cache.Range(func(key, value interface{}) bool {
-		fmt.Println("key : ", key, ", value :", string(value.([]byte)))
+		fmt.Println("key : ", key, ", value :", value)
 		return true
 	})
 }
-//DefaultCache 默认缓存
-type DefaultCache struct {
-	defaultCache sync.Map
+
+type DefaultLogger struct {
+	log seelog.LoggerInterface
 }
 
-//Set 获取缓存
-func (d *DefaultCache)Set(key string, value []byte, expireSeconds int) (err error)  {
-	d.defaultCache.Store(key,value)
-	return nil
+func (this *DefaultLogger) Debugf(format string, params ...interface{}) {
+	this.Debug(format, params)
 }
 
-//EntryCount 获取实体数量
-func (d *DefaultCache)EntryCount() (entryCount int64){
-	count:=int64(0)
-	d.defaultCache.Range(func(key, value interface{}) bool {
-		count++
-		return true
-	})
-	return count
+func (this *DefaultLogger) Infof(format string, params ...interface{}) {
+	this.Debug(format, params)
 }
 
-//Get 获取缓存
-func (d *DefaultCache)Get(key string) (value []byte, err error){
-	v, ok := d.defaultCache.Load(key)
-	if !ok{
-		return nil,errors.New("load default cache fail")
+func (this *DefaultLogger) Warnf(format string, params ...interface{}) {
+	this.Debug(format, params)
+}
+
+func (this *DefaultLogger) Errorf(format string, params ...interface{}) {
+	this.Debug(format, params)
+}
+
+func (this *DefaultLogger) Debug(v ...interface{}) {
+	this.log.Debug(v)
+}
+func (this *DefaultLogger) Info(v ...interface{}) {
+	this.Debug(v)
+}
+
+func (this *DefaultLogger) Warn(v ...interface{}) {
+	this.Debug(v)
+}
+
+func (this *DefaultLogger) Error(v ...interface{}) {
+	this.Debug(v)
+}
+
+func initSeeLog(configPath string) seelog.LoggerInterface {
+	logger, err := seelog.LoggerFromConfigAsFile(configPath)
+
+	//if error is happen change to default config.
+	if err != nil {
+		logger, err = seelog.LoggerFromConfigAsBytes([]byte("<seelog />"))
 	}
-	return v.([]byte),nil
-}
 
-//Range 遍历缓存
-func (d *DefaultCache)Range(f func(key, value interface{}) bool){
-	d.defaultCache.Range(f)
-}
+	logger.SetAdditionalStackDepth(1)
+	seelog.ReplaceLogger(logger)
+	defer seelog.Flush()
 
-//Del 删除缓存
-func (d *DefaultCache)Del(key string) (affected bool) {
-	d.defaultCache.Delete(key)
-	return true
-}
-
-//Clear 清除所有缓存
-func (d *DefaultCache)Clear() {
-	d.defaultCache=sync.Map{}
-}
-
-//DefaultCacheFactory 构造默认缓存组件工厂类
-type DefaultCacheFactory struct {
-
-}
-
-//Create 创建默认缓存组件
-func (d *DefaultCacheFactory) Create()agcache.CacheInterface {
-	return &DefaultCache{}
+	return logger
 }

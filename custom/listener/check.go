@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/zouyx/agollo/v3"
-	"github.com/zouyx/agollo/v3/env/config"
-	"github.com/zouyx/agollo/v3/storage"
+	"github.com/zouyx/agollo/v4"
+	"github.com/zouyx/agollo/v4/env/config"
+	"github.com/zouyx/agollo/v4/storage"
 	"sync"
 )
 
@@ -17,25 +17,25 @@ func main() {
 		IsBackupConfig: false,
 		Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
 	}
-	agollo.InitCustomConfig(func() (*config.AppConfig, error) {
-		return c, nil
-	})
 	c2 := &CustomChangeListener{}
 	c2.wg.Add(5)
-	agollo.AddChangeListener(c2)
 
-	error := agollo.Start()
+	client,err:=agollo.StartWithConfig(func() (*config.AppConfig, error) {
+		return c, nil
+	})
+	client.AddChangeListener(c2)
 
-	fmt.Println("err:", error)
+
+	fmt.Println("err:", err)
 
 	c2.wg.Wait()
-	writeConfig(c.NamespaceName)
+	writeConfig(c.NamespaceName,client)
 }
 
-func writeConfig(namespace string) {
-	cache := agollo.GetConfigCache(namespace)
+func writeConfig(namespace string,client *agollo.Client) {
+	cache := client.GetConfigCache(namespace)
 	cache.Range(func(key, value interface{}) bool {
-		fmt.Println("writeConfig key : ", key, ", value :", value)
+		fmt.Println("key : ", key, ", value :", value)
 		return true
 	})
 }
