@@ -25,17 +25,25 @@ func main() {
 		return c, nil
 	})
 
-	fmt.Println("err:", err)
+	if err!=nil{
+		fmt.Println("err:", err)
+		panic(err)
+	}
 
-	writeConfig(c.NamespaceName,client)
+	checkKey(c.NamespaceName,client)
 }
 
-func writeConfig(namespace string,client *agollo.Client) {
+func checkKey(namespace string,client *agollo.Client) {
 	cache := client.GetConfigCache(namespace)
+	count:=0
 	cache.Range(func(key, value interface{}) bool {
 		fmt.Println("key : ", key, ", value :", value)
+		count++
 		return true
 	})
+	if count<1{
+		panic("config key can not be null")
+	}
 }
 
 //DefaultCache 默认缓存
