@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/zouyx/agollo/v4"
 	"github.com/zouyx/agollo/v4/env/config"
+	"time"
 )
 
 func main() {
@@ -12,7 +13,7 @@ func main() {
 		Cluster:        "dev",
 		IP:             "http://106.54.227.205:8080",
 		NamespaceName:  "dubbo",
-		IsBackupConfig: false,
+		IsBackupConfig: true,
 		Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
 	}
 	agollo.SetLogger(&DefaultLogger{})
@@ -27,6 +28,29 @@ func main() {
 	}
 
 	checkKey(c.NamespaceName,client)
+
+	c = &config.AppConfig{
+		AppID:          "hk109",
+		Cluster:        "dev",
+		IP:             "http://106.54.227.205:8080",
+		NamespaceName:  "dubbo",
+		IsBackupConfig: false,
+		Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
+	}
+
+
+	client,err=agollo.StartWithConfig(func() (*config.AppConfig, error) {
+		return c, nil
+	})
+
+	if err!=nil{
+		fmt.Println("err:", err)
+		panic(err)
+	}
+
+	checkKey(c.NamespaceName,client)
+
+	time.Sleep(5 * time.Second)
 }
 
 func checkKey(namespace string,client *agollo.Client) {
