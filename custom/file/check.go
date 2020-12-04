@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/zouyx/agollo/v4"
+	"github.com/zouyx/agollo/v4/constant"
 	"github.com/zouyx/agollo/v4/env/config"
+	"github.com/zouyx/agollo/v4/extension"
 )
 
 
@@ -12,12 +14,13 @@ func main() {
 		AppID:          "testApplication_yang",
 		Cluster:        "dev",
 		IP:             "http://106.54.227.205:8080",
-		NamespaceName:  "testjson.json",
+		NamespaceName:  "mockDubbo.yml",
 		IsBackupConfig: false,
 		Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
 	}
 
 	agollo.SetBackupFileHandler(&FileHandler{})
+	extension.AddFormatParser(constant.YML, &Parser{})
 
 	client,err:=agollo.StartWithConfig(func() (*config.AppConfig, error) {
 		return c, nil
@@ -51,7 +54,7 @@ type FileHandler struct {
 
 // WriteConfigFile write config to file
 func (fileHandler *FileHandler) WriteConfigFile(config *config.ApolloConfig, configPath string) error {
-	fmt.Println(config.Configurations)
+	//fmt.Println(config.Configurations)
 	return nil
 }
 
@@ -63,4 +66,17 @@ func (fileHandler *FileHandler) GetConfigFile(configDir string, appID string, na
 //LoadConfigFile load config from file
 func (fileHandler *FileHandler) LoadConfigFile(configDir string, appID string, namespace string) (*config.ApolloConfig, error) {
 	return &config.ApolloConfig{}, nil
+}
+
+// Parser properties转换器
+type Parser struct {
+}
+
+// Parse 内存内容=>yml文件转换器
+func (d *Parser) Parse(configContent interface{}) (map[string]interface{}, error) {
+	fmt.Println(configContent)
+
+	m:=make(map[string]interface{})
+	m["content"]=configContent
+	return m, nil
 }
