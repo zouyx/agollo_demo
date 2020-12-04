@@ -1,4 +1,4 @@
-自定义缓存组件
+自定义文件处理组件
 ------------
 
 * 启动
@@ -9,4 +9,33 @@ go run check.go
 
 * 如何使用
 
-[使用方法点我](https://github.com/zouyx/agollo/wiki/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BC%93%E5%AD%98%E7%BB%84%E4%BB%B6)
+## 实现 
+`github.com/zouyx/agollo/v4/env/file/file_handler.go`
+
+```go
+// FileHandler 默认备份文件读写
+type FileHandler struct {
+}
+
+// WriteConfigFile write config to file
+func (fileHandler *FileHandler) WriteConfigFile(config *config.ApolloConfig, configPath string) error {
+	fmt.Println(config.Configurations)
+	return nil
+}
+
+// GetConfigFile get real config file
+func (fileHandler *FileHandler) GetConfigFile(configDir string, appID string, namespace string) string {
+	return ""
+}
+
+//LoadConfigFile load config from file
+func (fileHandler *FileHandler) LoadConfigFile(configDir string, appID string, namespace string) (*config.ApolloConfig, error) {
+	return &config.ApolloConfig{}, nil
+}
+```
+
+## 替换组件
+
+```go
+agollo.SetBackupFileHandler(&FileHandler{})
+```
