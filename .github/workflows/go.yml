@@ -43,4 +43,4 @@ jobs:
         run: go run multi/appid/check.go
 
       - name: Mutil Namespace
-          run: go run multi/namespace/check.go
+        run: go run multi/namespace/check.go
