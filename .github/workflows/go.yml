@@ -40,7 +40,7 @@ jobs:
         run: go run custom/cache/check.go
 
       - name: Mutil AppId
-          run: go run multi/appid/check.go
+        run: go run multi/appid/check.go
 
       - name: Mutil Namespace
           run: go run multi/namespace/check.go
