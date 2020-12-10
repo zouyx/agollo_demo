@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/zouyx/agollo/v4"
 	"github.com/zouyx/agollo/v4/env/config"
+	"strings"
 	"time"
 )
 
@@ -12,7 +13,7 @@ func main() {
 		AppID:          "testApplication_yang",
 		Cluster:        "dev",
 		IP:             "http://106.54.227.205:8080",
-		NamespaceName:  "dubbo",
+		NamespaceName:  "dubbo,product.joe",
 		IsBackupConfig: true,
 		Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
 	}
@@ -27,28 +28,10 @@ func main() {
 		panic(err)
 	}
 
-	checkKey(c.NamespaceName,client)
-
-	c = &config.AppConfig{
-		AppID:          "hk109",
-		Cluster:        "dev",
-		IP:             "http://106.54.227.205:8080",
-		NamespaceName:  "dubbo",
-		IsBackupConfig: false,
-		Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
+	split := strings.Split(c.NamespaceName, ",")
+	for _, n := range split {
+		checkKey(n,client)
 	}
-
-
-	client,err=agollo.StartWithConfig(func() (*config.AppConfig, error) {
-		return c, nil
-	})
-
-	if err!=nil{
-		fmt.Println("err:", err)
-		panic(err)
-	}
-
-	checkKey(c.NamespaceName,client)
 
 	time.Sleep(5 * time.Second)
 }
