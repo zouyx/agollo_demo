@@ -10,7 +10,7 @@ go run check.go
 * 如何使用
 
 ## 实现 
-`github.com/zouyx/agollo/v4/env/file/file_handler.go`
+`github.com/apolloconfig/agollo/v4/env/file/file_handler.go`
 
 ```go
 // FileHandler 默认备份文件读写

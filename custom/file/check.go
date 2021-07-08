@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/zouyx/agollo/v4"
-	"github.com/zouyx/agollo/v4/constant"
-	"github.com/zouyx/agollo/v4/env/config"
-	"github.com/zouyx/agollo/v4/extension"
+	"github.com/apolloconfig/agollo/v4"
+	"github.com/apolloconfig/agollo/v4/constant"
+	"github.com/apolloconfig/agollo/v4/env/config"
+	"github.com/apolloconfig/agollo/v4/extension"
 )
 
 
