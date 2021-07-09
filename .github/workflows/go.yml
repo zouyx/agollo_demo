@@ -30,17 +30,17 @@ jobs:
               dep ensure
           fi
 
-      - name: Hello world
-        run: go run helloworld/check.go
-
-      - name: Log
-        run: go run custom/log/check.go
-
-      - name: Cache
-        run: go run custom/cache/check.go
-
-      - name: Mutil AppId
-        run: go run multi/appid/check.go
-
-      - name: Mutil Namespace
-        run: go run multi/namespace/check.go
+#      - name: Hello world
+#        run: go run helloworld/check.go
+#
+#      - name: Log
+#        run: go run custom/log/check.go
+#
+#      - name: Cache
+#        run: go run custom/cache/check.go
+#
+#      - name: Mutil AppId
+#        run: go run multi/appid/check.go
+#
+#      - name: Mutil Namespace
+#        run: go run multi/namespace/check.go
