@@ -1,7 +1,7 @@
-Agollo_Demo - Demo For Apollo
+agollo_demo - Demo For Apollo
 ================
 
-[agollo](https://github.com/zouyx/agollo) 的使用Demo
+[agollo](https://github.com/apolloconfig/agollo) 的使用Demo
 
 主要用于验证 Agollo 客户端自动刷新功能
 
@@ -18,7 +18,7 @@ go mod
 
 ```
 gopm get github.com/cihub/seelog -v -g
-gopm get github.com/zouyx/agollo -v -g
+gopm get github.com/apolloconfig/agollo -v -g
 ```
 
 推荐[gopm](https://github.com/gpmgo/gopm)，不需要翻墙

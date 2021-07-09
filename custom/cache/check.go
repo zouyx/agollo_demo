@@ -3,9 +3,9 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/zouyx/agollo/v4"
-	"github.com/zouyx/agollo/v4/agcache"
-	"github.com/zouyx/agollo/v4/env/config"
+	"github.com/apolloconfig/agollo/v4"
+	"github.com/apolloconfig/agollo/v4/agcache"
+	"github.com/apolloconfig/agollo/v4/env/config"
 	"sync"
 )
 
