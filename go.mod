@@ -1,7 +1,7 @@
 module github.com/zouyx/agollo_demo
 
 require (
-	github.com/apolloconfig/agollo/v4 v4.0.8-0.20210708162149-3faf32f52670
+	github.com/apolloconfig/agollo/v4 v4.0.8
 	github.com/cihub/seelog v0.0.0-20170130134532-f561c5e57575
 )
 
