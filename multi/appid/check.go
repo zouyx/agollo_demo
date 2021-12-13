@@ -53,7 +53,7 @@ func main() {
 	time.Sleep(5 * time.Second)
 }
 
-func checkKey(namespace string,client *agollo.Client) {
+func checkKey(namespace string,client agollo.Client) {
 	cache := client.GetConfigCache(namespace)
 	count:=0
 	cache.Range(func(key, value interface{}) bool {

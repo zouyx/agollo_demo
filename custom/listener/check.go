@@ -32,7 +32,7 @@ func main() {
 	writeConfig(c.NamespaceName,client)
 }
 
-func writeConfig(namespace string,client *agollo.Client) {
+func writeConfig(namespace string,client agollo.Client) {
 	cache := client.GetConfigCache(namespace)
 	cache.Range(func(key, value interface{}) bool {
 		fmt.Println("key : ", key, ", value :", value)
