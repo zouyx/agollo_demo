@@ -20,7 +20,7 @@ var appConfig= &config.AppConfig{
 	Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
 }
 
-var client *agollo.Client
+var client agollo.Client
 
 func main() {
 	var err error
