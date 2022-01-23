@@ -13,7 +13,7 @@ func main() {
 		AppID:          "agollo-test",
 		Cluster:        "dev",
 		IP:             "http://106.54.227.205:8080",
-		NamespaceName:  "dubbo,product.joe",
+		NamespaceName:  "dubbo,testjson.json",
 		IsBackupConfig: true,
 		Secret:         "7c2ddeb1cd344b8b8db185b3d8641e7f",
 	}
