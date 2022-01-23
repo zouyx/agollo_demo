@@ -10,12 +10,12 @@ import (
 
 func main() {
 	c := &config.AppConfig{
-		AppID:          "testApplication_yang",
+		AppID:          "agollo-test",
 		Cluster:        "dev",
 		IP:             "http://106.54.227.205:8080",
 		NamespaceName:  "testyml.yml",
 		IsBackupConfig: false,
-		Secret:         "6ce3ff7e96a24335a9634fe9abca6d51",
+		Secret:         "7c2ddeb1cd344b8b8db185b3d8641e7f",
 	}
 
 	loggerInterface:=initSeeLog("seelog.xml")
