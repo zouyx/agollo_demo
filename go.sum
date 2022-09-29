@@ -25,6 +25,8 @@ github.com/apolloconfig/agollo/v4 v4.2.0 h1:FkE8acffsUhnRnjyi37eOq6JpfUhQKuNccG2
 github.com/apolloconfig/agollo/v4 v4.2.0/go.mod h1:SuvTjtg0p4UlSzSbik+ibLRr6oR1xRsfy65QzP3GEAs=
 github.com/apolloconfig/agollo/v4 v4.2.1-0.20220929010343-800122c04a85 h1:arMArUcMOLL2dcp/ienRCtlFKeTpuma0kTjuZDT8r8E=
 github.com/apolloconfig/agollo/v4 v4.2.1-0.20220929010343-800122c04a85/go.mod h1:SuvTjtg0p4UlSzSbik+ibLRr6oR1xRsfy65QzP3GEAs=
+github.com/apolloconfig/agollo/v4 v4.2.1 h1:+cTdSZbWfLLZpEQk2LEhSbkmjLH+rzyAAPb6buhPA+Q=
+github.com/apolloconfig/agollo/v4 v4.2.1/go.mod h1:SuvTjtg0p4UlSzSbik+ibLRr6oR1xRsfy65QzP3GEAs=
 github.com/armon/circbuf v0.0.0-20150827004946-bbbad097214e/go.mod h1:3U/XgcO3hCbHZ8TKRvWD2dDTCfh9M9ya+I9JpbB7O8o=
 github.com/armon/go-metrics v0.0.0-20180917152333-f0300d1749da/go.mod h1:Q73ZrmVTwzkszR9V5SSuryQ31EELlFMUz1kKyl939pY=
 github.com/armon/go-radix v0.0.0-20180808171621-7fddfc383310/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
