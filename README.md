@@ -36,3 +36,35 @@ Installation
     * [自定义日志组件](custom/log)
     * [自定义缓存组件](custom/cache)
     * [监听变更事件](custom/listener)
+
+## 初始化方法
+### 创建应用 
+appid：agollo-test
+应用名称：agollo-test 
+#### 创建私有 Namespace
+
+##### testjson.json
+```json
+{
+  "a":"b",
+  "c":"d"
+}
+```
+##### yml
+```yml
+application:
+    name: agollo-test
+    port: 8000
+```
+
+### 创建加密应用
+appid：agollo-secret-test
+应用名称：agollo-secret-test
+
+##### application
+```
+connect: 10
+quatity: 5
+```
+
+#####　开启密钥
