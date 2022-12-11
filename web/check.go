@@ -11,10 +11,10 @@ import (
 )
 
 var namespaces = make(map[string]*struct{}, 0)
-var appConfig= &config.AppConfig{
+var appConfig = &config.AppConfig{
 	AppID:          "agollo-test",
 	Cluster:        "dev",
-	IP:             "http://106.54.227.205:8080",
+	IP:             "http://81.68.181.139:8080",
 	NamespaceName:  "dubbo",
 	IsBackupConfig: false,
 	Secret:         "7c2ddeb1cd344b8b8db185b3d8641e7f",
@@ -26,7 +26,7 @@ func main() {
 	var err error
 	agollo.SetLogger(&DefaultLogger{})
 
-	client,err=agollo.StartWithConfig(func() (*config.AppConfig, error) {
+	client, err = agollo.StartWithConfig(func() (*config.AppConfig, error) {
 		return appConfig, nil
 	})
 
@@ -42,7 +42,6 @@ func GetAllConfig(rw http.ResponseWriter, req *http.Request) {
 	for _, n := range ns {
 		namespaces[n] = &struct{}{}
 	}
-
 
 	n := req.URL.Query().Get("namespace")
 	if n != "" {
@@ -84,7 +83,7 @@ func writeConfig(buffer *bytes.Buffer, namespace string) {
 	buffer.WriteString(fmt.Sprintf("NamespaceName : %s <br/>", namespace))
 	buffer.WriteString("Configurations: <br/>")
 	cache := client.GetConfigCache(namespace)
-	if cache==nil{
+	if cache == nil {
 		return
 	}
 	cache.Range(func(key, value interface{}) bool {

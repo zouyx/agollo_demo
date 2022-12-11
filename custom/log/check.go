@@ -2,47 +2,45 @@ package main
 
 import (
 	"fmt"
-	"github.com/cihub/seelog"
 	"github.com/apolloconfig/agollo/v4"
 	"github.com/apolloconfig/agollo/v4/env/config"
+	"github.com/cihub/seelog"
 )
-
 
 func main() {
 	c := &config.AppConfig{
 		AppID:          "agollo-test",
 		Cluster:        "dev",
-		IP:             "http://106.54.227.205:8080",
+		IP:             "http://81.68.181.139:8080",
 		NamespaceName:  "testyml.yml",
 		IsBackupConfig: false,
 		Secret:         "7c2ddeb1cd344b8b8db185b3d8641e7f",
 	}
 
-	loggerInterface:=initSeeLog("seelog.xml")
+	loggerInterface := initSeeLog("seelog.xml")
 	agollo.SetLogger(&DefaultLogger{loggerInterface})
 
-	client,err:=agollo.StartWithConfig(func() (*config.AppConfig, error) {
+	client, err := agollo.StartWithConfig(func() (*config.AppConfig, error) {
 		return c, nil
 	})
 
-	if err!=nil{
+	if err != nil {
 		fmt.Println("err:", err)
 		panic(err)
 	}
 
-	checkKey(c.NamespaceName,client)
+	checkKey(c.NamespaceName, client)
 }
 
-
-func checkKey(namespace string,client agollo.Client) {
+func checkKey(namespace string, client agollo.Client) {
 	cache := client.GetConfigCache(namespace)
-	count:=0
+	count := 0
 	cache.Range(func(key, value interface{}) bool {
 		fmt.Println("key : ", key, ", value :", value)
 		count++
 		return true
 	})
-	if count<1{
+	if count < 1 {
 		panic("config key can not be null")
 	}
 }
