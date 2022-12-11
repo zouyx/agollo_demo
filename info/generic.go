@@ -1,5 +1,5 @@
 package info
 
 const (
-	NAMESPACE = "testjson.json,testyml.yml"
+	Namespace = "testjson.json,testyml.yml"
 )

@@ -19,7 +19,7 @@ func main() {
 		panic(err)
 	}
 
-	split := strings.Split(info.NAMESPACE, ",")
+	split := strings.Split(info.Namespace, ",")
 	for _, n := range split {
 		checkKey(n, client)
 	}

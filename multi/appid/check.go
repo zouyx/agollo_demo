@@ -19,12 +19,12 @@ func main() {
 	checkKey("testyml.yml", client)
 
 	c := &config.AppConfig{
-		AppID:          info.SECRET_APPID,
+		AppID:          info.SecretAppID,
 		Cluster:        "dev",
 		IP:             "http://81.68.181.139:8080",
-		NamespaceName:  info.SECRET_NAMESPACE,
+		NamespaceName:  info.SecretNameSpace,
 		IsBackupConfig: false,
-		Secret:         info.SECRET_KEY,
+		Secret:         info.SecretKey,
 	}
 
 	client, err = agollo.StartWithConfig(func() (*config.AppConfig, error) {
