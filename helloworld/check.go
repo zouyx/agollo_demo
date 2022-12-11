@@ -4,38 +4,29 @@ import (
 	"fmt"
 	"github.com/apolloconfig/agollo/v4"
 	"github.com/apolloconfig/agollo/v4/env/config"
+	"github.com/zouyx/agollo_demo/info"
 	"time"
 )
 
 func main() {
-	c := &config.AppConfig{
-		AppID:          "agollo-test",
-		Cluster:        "dev",
-		IP:             "http://81.68.181.139:8080",
-		NamespaceName:  "dubbo",
-		IsBackupConfig: true,
-		Secret:         "7c2ddeb1cd344b8b8db185b3d8641e7f",
-	}
 	agollo.SetLogger(&DefaultLogger{})
 
-	client, err := agollo.StartWithConfig(func() (*config.AppConfig, error) {
-		return c, nil
-	})
+	client, err := agollo.Start()
 
 	if err != nil {
 		fmt.Println("err:", err)
 		panic(err)
 	}
 
-	checkKey(c.NamespaceName, client)
+	checkKey("testjson.json", client)
 
-	c = &config.AppConfig{
-		AppID:          "agollo-test",
+	c := &config.AppConfig{
+		AppID:          info.SECRET_APPID,
 		Cluster:        "dev",
 		IP:             "http://81.68.181.139:8080",
-		NamespaceName:  "dubbo",
+		NamespaceName:  info.SECRET_NAMESPACE,
 		IsBackupConfig: false,
-		Secret:         "7c2ddeb1cd344b8b8db185b3d8641e7f",
+		Secret:         info.SECRET_KEY,
 	}
 
 	client, err = agollo.StartWithConfig(func() (*config.AppConfig, error) {

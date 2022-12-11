@@ -6,31 +6,25 @@ import (
 	"github.com/apolloconfig/agollo/v4/constant"
 	"github.com/apolloconfig/agollo/v4/env/config"
 	"github.com/apolloconfig/agollo/v4/extension"
+	"github.com/zouyx/agollo_demo/info"
+	"strings"
 )
 
 func main() {
-	c := &config.AppConfig{
-		AppID:          "agollo-test",
-		Cluster:        "dev",
-		IP:             "http://81.68.181.139:8080",
-		NamespaceName:  "testyml.yml",
-		IsBackupConfig: false,
-		Secret:         "7c2ddeb1cd344b8b8db185b3d8641e7f",
-	}
-
 	agollo.SetBackupFileHandler(&FileHandler{})
 	extension.AddFormatParser(constant.YML, &Parser{})
 
-	client, err := agollo.StartWithConfig(func() (*config.AppConfig, error) {
-		return c, nil
-	})
+	client, err := agollo.Start()
 
 	if err != nil {
 		fmt.Println("err:", err)
 		panic(err)
 	}
 
-	checkKey(c.NamespaceName, client)
+	split := strings.Split(info.NAMESPACE, ",")
+	for _, n := range split {
+		checkKey(n, client)
+	}
 }
 
 func checkKey(namespace string, client agollo.Client) {

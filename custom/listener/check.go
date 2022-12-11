@@ -3,32 +3,21 @@ package main
 import (
 	"fmt"
 	"github.com/apolloconfig/agollo/v4"
-	"github.com/apolloconfig/agollo/v4/env/config"
 	"github.com/apolloconfig/agollo/v4/storage"
 	"sync"
 )
 
 func main() {
-	c := &config.AppConfig{
-		AppID:          "agollo-test",
-		Cluster:        "dev",
-		IP:             "http://81.68.181.139:8080",
-		NamespaceName:  "testyml.yml",
-		IsBackupConfig: false,
-		Secret:         "7c2ddeb1cd344b8b8db185b3d8641e7f",
-	}
 	c2 := &CustomChangeListener{}
-	c2.wg.Add(5)
+	c2.wg.Add(2)
 
-	client, err := agollo.StartWithConfig(func() (*config.AppConfig, error) {
-		return c, nil
-	})
+	client, err := agollo.Start()
 	client.AddChangeListener(c2)
 
 	fmt.Println("err:", err)
 
 	c2.wg.Wait()
-	writeConfig(c.NamespaceName, client)
+	writeConfig("testyml.yml", client)
 }
 
 func writeConfig(namespace string, client agollo.Client) {

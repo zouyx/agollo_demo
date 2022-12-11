@@ -15,9 +15,8 @@ var appConfig = &config.AppConfig{
 	AppID:          "agollo-test",
 	Cluster:        "dev",
 	IP:             "http://81.68.181.139:8080",
-	NamespaceName:  "dubbo",
+	NamespaceName:  "testjson.json,testyml.yml",
 	IsBackupConfig: false,
-	Secret:         "7c2ddeb1cd344b8b8db185b3d8641e7f",
 }
 
 var client agollo.Client
