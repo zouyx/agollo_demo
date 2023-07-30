@@ -40,8 +40,8 @@ dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=
-github.com/apolloconfig/agollo/v4 v4.3.1-0.20230730135025-3a95fe800b36 h1:nIFossmXh3850XV2ld+kGBxAt8d8HdRqh2RHOt79/Jo=
-github.com/apolloconfig/agollo/v4 v4.3.1-0.20230730135025-3a95fe800b36/go.mod h1:n/7qxpKOTbegygLmO5OKmFWCdy3T+S/zioBGlo457Dk=
+github.com/apolloconfig/agollo/v4 v4.3.1 h1:NHjd7KqOPmTvYwJidISc9MPBRO8m9UNrH3tijcEVNAY=
+github.com/apolloconfig/agollo/v4 v4.3.1/go.mod h1:n/7qxpKOTbegygLmO5OKmFWCdy3T+S/zioBGlo457Dk=
 github.com/armon/circbuf v0.0.0-20150827004946-bbbad097214e/go.mod h1:3U/XgcO3hCbHZ8TKRvWD2dDTCfh9M9ya+I9JpbB7O8o=
 github.com/armon/go-metrics v0.0.0-20180917152333-f0300d1749da/go.mod h1:Q73ZrmVTwzkszR9V5SSuryQ31EELlFMUz1kKyl939pY=
 github.com/armon/go-radix v0.0.0-20180808171621-7fddfc383310/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
