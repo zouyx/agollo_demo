@@ -1,4 +1,4 @@
-自定义文件处理组件
+自定义configmap缓存组件
 ------------
 
 * 启动
@@ -9,7 +9,7 @@ go run check.go
 
 * 如何使用
 
-## 实现 
+## 实现
 `github.com/apolloconfig/agollo/v4/env/file/file_handler.go`
 
 ```go
@@ -34,8 +34,9 @@ func (fileHandler *FileHandler) LoadConfigFile(configDir string, appID string, n
 }
 ```
 
-## 替换组件
+## 添加组件
 
 ```go
-agollo.SetBackupFileHandler(&FileHandler{})
+agollo.AddBackupFileHandler(&FileHandler{}, -1)
 ```
+默认有文件缓存，优先级为0，可以使用AddBackupFileHandler添加configmap缓存组件，并自定义优先级
