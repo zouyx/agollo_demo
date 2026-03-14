@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/apolloconfig/agollo/v4"
-	"github.com/apolloconfig/agollo/v4/storage"
+	"github.com/apolloconfig/agollo/v5"
+	"github.com/apolloconfig/agollo/v5/storage"
 	"sync"
 )
 

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/apolloconfig/agollo/v4"
+	"github.com/apolloconfig/agollo/v5"
 	"github.com/zouyx/agollo_demo/info"
 	"strings"
 	"time"

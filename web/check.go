@@ -3,11 +3,11 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/apolloconfig/agollo/v4/env/config"
+	"github.com/apolloconfig/agollo/v5/env/config"
 	"net/http"
 	"strings"
 
-	"github.com/apolloconfig/agollo/v4"
+	"github.com/apolloconfig/agollo/v5"
 )
 
 var namespaces = make(map[string]*struct{}, 0)
