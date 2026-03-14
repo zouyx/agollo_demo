@@ -3,11 +3,11 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/apolloconfig/agollo/v4/env/config"
+	"github.com/apolloconfig/agollo/v5/env/config"
 	"net/http"
 	"strings"
 
-	"github.com/apolloconfig/agollo/v4"
+	"github.com/apolloconfig/agollo/v5"
 )
 
 var namespaces = make(map[string]*struct{}, 0)
@@ -95,19 +95,19 @@ type DefaultLogger struct {
 }
 
 func (this *DefaultLogger) Debugf(format string, params ...interface{}) {
-	this.Debug(fmt.Sprintf(format, params...))
+	this.Debug(append([]interface{}{format}, params...)...)
 }
 
 func (this *DefaultLogger) Infof(format string, params ...interface{}) {
-	this.Debug(fmt.Sprintf(format, params...))
+	this.Debug(append([]interface{}{format}, params...)...)
 }
 
 func (this *DefaultLogger) Warnf(format string, params ...interface{}) {
-	this.Debug(fmt.Sprintf(format, params...))
+	this.Debug(append([]interface{}{format}, params...)...)
 }
 
 func (this *DefaultLogger) Errorf(format string, params ...interface{}) {
-	this.Debug(fmt.Sprintf(format, params...))
+	this.Debug(append([]interface{}{format}, params...)...)
 }
 
 func (this *DefaultLogger) Debug(v ...interface{}) {

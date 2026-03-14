@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/apolloconfig/agollo/v4"
+	"github.com/apolloconfig/agollo/v5"
 	"github.com/zouyx/agollo_demo/info"
 	"strings"
 	"time"
@@ -41,19 +41,19 @@ type DefaultLogger struct {
 }
 
 func (this *DefaultLogger) Debugf(format string, params ...interface{}) {
-	this.Debug(fmt.Sprintf(format, params...))
+	this.Debug(append([]interface{}{format}, params...)...)
 }
 
 func (this *DefaultLogger) Infof(format string, params ...interface{}) {
-	this.Debug(fmt.Sprintf(format, params...))
+	this.Debug(append([]interface{}{format}, params...)...)
 }
 
 func (this *DefaultLogger) Warnf(format string, params ...interface{}) {
-	this.Debug(fmt.Sprintf(format, params...))
+	this.Debug(append([]interface{}{format}, params...)...)
 }
 
 func (this *DefaultLogger) Errorf(format string, params ...interface{}) {
-	this.Debug(fmt.Sprintf(format, params...))
+	this.Debug(append([]interface{}{format}, params...)...)
 }
 
 func (this *DefaultLogger) Debug(v ...interface{}) {
