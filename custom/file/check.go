@@ -55,7 +55,7 @@ func (fileHandler *FileHandler) GetConfigFile(configDir string, appID string, na
 	return ""
 }
 
-//LoadConfigFile load config from file
+// LoadConfigFile load config from file
 func (fileHandler *FileHandler) LoadConfigFile(configDir string, appID string, namespace string) (*config.ApolloConfig, error) {
 	return &config.ApolloConfig{}, nil
 }
