@@ -41,19 +41,19 @@ type DefaultLogger struct {
 }
 
 func (this *DefaultLogger) Debugf(format string, params ...interface{}) {
-	this.Debug(append([]interface{}{format}, params...)...)
+	this.Debug(format, params...)
 }
 
 func (this *DefaultLogger) Infof(format string, params ...interface{}) {
-	this.Debug(append([]interface{}{format}, params...)...)
+	this.Debug(format, params...)
 }
 
 func (this *DefaultLogger) Warnf(format string, params ...interface{}) {
-	this.Debug(append([]interface{}{format}, params...)...)
+	this.Debug(format, params...)
 }
 
 func (this *DefaultLogger) Errorf(format string, params ...interface{}) {
-	this.Debug(append([]interface{}{format}, params...)...)
+	this.Debug(format, params...)
 }
 
 func (this *DefaultLogger) Debug(v ...interface{}) {
