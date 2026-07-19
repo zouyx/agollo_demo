@@ -52,8 +52,7 @@ func checkKey(namespace string, client agollo.Client) {
 		return true
 	})
 	if count < 1 {
-		fmt.Println("Warning: config key can not be null for namespace:", namespace)
-		fmt.Println("This may indicate that the Apollo server is not reachable or the namespace is not configured")
+		panic("config key can not be null")
 	}
 }
 
